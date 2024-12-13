@@ -5,7 +5,7 @@ class Config:
     bootstrap_servers = "<IP Address>:9092"
     data_encoding = 'utf-8'
     querystring = {"aweme_id": "6944028931875949829",
-                   "count": "10",
+                   "count": "50",
                    "cursor": "0"}
     headers = {
         "x-rapidapi-key": "your-api-key",
