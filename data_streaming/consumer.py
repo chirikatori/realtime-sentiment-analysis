@@ -27,10 +27,6 @@ class Consumer():
         self.spark = SparkSession.builder.appName(appName) \
             .getOrCreate()
         self.pipeline = PipelineModel.load(model_path)
-        self.class_index_mapping = {0: "Negative",
-                                    1: "Positive",
-                                    2: "Neutral",
-                                    3: "Irrelevant"}
 
         if self.schema is None:
             raise ValueError("Schema is None, Schema must be StructType based on your producer data") # noqa
