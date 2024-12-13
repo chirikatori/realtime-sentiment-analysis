@@ -34,13 +34,13 @@ class Consumer():
 
         if self.schema is None:
             raise ValueError("Schema is None, Schema must be StructType based on your producer data") # noqa
-        self.map_sentiment_udf = udf(lambda index: self.class_index_mapping.get(int(index), "Unknown"), StringType()) # noqa
 
     @staticmethod
     def clean_text(text):
         if text is not None:
             # Remove links starting with https://, http://, www., or containing .com  # noqa
-            text = re.sub(r'https?://\S+|www\.\S+|\.com\S+|youtu\.be/\S+', '', text) # noqa
+            text = re.sub(r'https?://\S+|www\.\S+|\.com\S+|youtu\.be/\S+', '',
+                          text)
             # Remove words starting with # or @
             text = re.sub(r'(@|#)\w+', '', text)
             # Convert to lowercase
@@ -54,10 +54,13 @@ class Consumer():
             return ''
 
     def start_stream(self):
-        class_index_mapping = {0: "Negative", 1: "Positive", 2: "Neutral", 3: "Irrelevant"} # noqa
+        class_index_mapping = {0: "Negative",
+                               1: "Positive",
+                               2: "Neutral",
+                               3: "Irrelevant"}
 
-        # Create the UDF here
-        map_sentiment_udf = udf(lambda index: class_index_mapping.get(int(index), "Unknown"), StringType()) # noqa
+        map_sentiment_udf = udf(lambda index: class_index_mapping.get(
+            int(index), "Unknown"), StringType())
 
         kafka_df = self.spark.readStream \
             .format("kafka") \
