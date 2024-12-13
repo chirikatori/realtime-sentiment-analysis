@@ -67,4 +67,4 @@ If you have any feedback, please reach out to us at thanhluffy5D@gmail.com
 
 ## License  
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](LICENSE.md)
