@@ -1,11 +1,11 @@
 from kafka import KafkaProducer
-from data_streaming import Config, ScrapeData
+from data_streaming import Config
 import json
 
 
 class Producer:
     def __init__(self,
-                 scraped_data: ScrapeData,
+                 scraped_data,
                  topic: str = Config.kafka_topic,
                  bootstrap_servers: str = Config.bootstrap_servers):
         self.scraped_data = scraped_data
@@ -21,7 +21,7 @@ class Producer:
         try:
             for message in self.scraped_data:
                 print(f"Sending message: {message}")
-                producer.send(self.topic, value={"message": message})
+                producer.send(self.topic, value={"comment": message})
 
             producer.flush()
             print("All messages sent successfully!")
